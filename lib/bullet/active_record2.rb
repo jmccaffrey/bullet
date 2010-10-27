@@ -7,8 +7,8 @@ module Bullet
           alias_method :origin_find_every, :find_every
           # if select a collection of objects, then these objects have possible to cause N+1 query.
           # if select only one object, then the only one object has impossible to cause N+1 query.
-          def find_every(options)
-            records = origin_find_every(options)
+          def find_every(options, skip_instantiation = false)
+            records = origin_find_every(options, skip_instantiation)
 
             if records 
               if records.size > 1
